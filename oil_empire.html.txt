@@ -1,0 +1,1541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>OIL EMPIRE — West Asia 1908–2000</title>
+
+<style>
+*{box-sizing:border-box}
+html,body{
+    margin:0;
+    min-height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#061014;
+    color:#eef7f2;
+}
+body{overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+
+:root{
+    --gold:#e9c46a;
+    --gold2:#c99635;
+    --green:#17382d;
+    --green2:#0d211b;
+    --line:#315647;
+    --text:#edf7f1;
+    --muted:#9bb7ac;
+    --danger:#d97855;
+}
+
+.hidden{display:none!important}
+
+#start,#ending{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    background:
+      radial-gradient(circle at 20% 10%,#1a4938,transparent 32%),
+      radial-gradient(circle at 90% 90%,#173d31,transparent 30%),
+      #061014;
+}
+
+.panel{
+    width:min(1100px,100%);
+    background:#09181df5;
+    border:1px solid var(--line);
+    border-radius:24px;
+    box-shadow:0 25px 80px #000b;
+    overflow:hidden;
+}
+
+.hero{
+    text-align:center;
+    padding:45px 20px;
+}
+
+.oil-orb{
+    width:150px;
+    height:150px;
+    margin:auto;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 30% 25%,#e9c46a 0 5%,#594a28 8% 17%,#17150e 35%,#030505 68%);
+    box-shadow:0 0 60px #e9c46a55;
+    animation:orb 3s ease-in-out infinite;
+}
+
+@keyframes orb{
+    50%{transform:translateY(-8px) scale(1.03)}
+}
+
+.eyebrow{
+    color:#a9c6b9;
+    letter-spacing:4px;
+    font-size:13px;
+    margin-top:28px;
+}
+
+.logo{
+    color:var(--gold);
+    font-weight:900;
+    font-size:clamp(45px,9vw,88px);
+    letter-spacing:6px;
+    margin:7px 0;
+    text-shadow:0 0 30px #e9c46a44;
+}
+
+.hero p{
+    max-width:720px;
+    margin:15px auto;
+    color:#b0c7bd;
+    line-height:1.65;
+}
+
+.features{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:9px;
+    margin:25px auto;
+}
+
+.feature{
+    padding:10px 14px;
+    border-radius:99px;
+    background:#10251f;
+    border:1px solid var(--line);
+}
+
+.primary{
+    border:0;
+    background:var(--gold);
+    color:#17140b;
+    font-weight:900;
+    padding:15px 25px;
+    border-radius:12px;
+    box-shadow:0 8px 30px #e9c46a22;
+}
+
+.primary:active{transform:scale(.97)}
+
+.note{
+    color:#718e84;
+    font-size:12px;
+    margin-top:14px;
+}
+
+
+/* GAME */
+
+#game{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 10% 10%,#123227,transparent 28%),
+      #061014;
+}
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    padding:9px;
+    background:#071318ed;
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+}
+
+.toprow{
+    max-width:1250px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand{
+    margin-right:auto;
+    color:var(--gold);
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.year{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.reset{
+    border:1px solid var(--line);
+    background:#10231e;
+    color:white;
+    border-radius:9px;
+    padding:7px 10px;
+}
+
+.stats{
+    max-width:1250px;
+    margin:7px auto 0;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:6px;
+}
+
+.stat{
+    min-width:0;
+    background:#0c1d21;
+    border:1px solid #29493e;
+    border-radius:10px;
+    padding:7px 8px;
+}
+
+.stat b{
+    display:block;
+    color:white;
+    font-size:15px;
+}
+
+.stat small{
+    color:#78968b;
+    font-size:10px;
+}
+
+.bar{
+    height:4px;
+    margin-top:5px;
+    background:#172b2a;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.bar i{
+    display:block;
+    height:100%;
+    background:var(--gold);
+    width:50%;
+    transition:width .5s;
+}
+
+
+/* MAIN */
+
+.layout{
+    max-width:1250px;
+    margin:14px auto;
+    padding:0 10px;
+    display:grid;
+    grid-template-columns:1.6fr .9fr;
+    gap:14px;
+}
+
+.box{
+    background:#09181d;
+    border:1px solid #29493e;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+
+/* MAP */
+
+.maphead{
+    padding:11px 14px;
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:#a8beb5;
+}
+
+.map{
+    height:600px;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 55% 50%,#285441 0 2px,transparent 3px),
+      linear-gradient(135deg,#10291f,#183c2f 48%,#09232a);
+}
+
+.map:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      repeating-linear-gradient(
+        120deg,
+        transparent 0 38px,
+        #ffffff04 39px 40px
+      );
+}
+
+.sea{
+    position:absolute;
+    color:#6c99a2;
+    font-size:11px;
+    font-style:italic;
+    z-index:1;
+}
+
+.country{
+    position:absolute;
+    z-index:4;
+    padding:7px 9px;
+    border-radius:8px;
+    background:#17352bdd;
+    border:1px solid #527464;
+    font-size:11px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.country.hot{
+    border-color:var(--gold);
+    box-shadow:0 0 22px #e9c46a55;
+    animation:bob 1s infinite;
+}
+
+.country.clickable{
+    cursor:pointer;
+}
+
+.country.clickable:hover{
+    background:#24503e;
+    transform:scale(1.06);
+}
+
+@keyframes bob{
+    50%{transform:translateY(-3px) scale(1.04)}
+}
+
+.oil{
+    position:absolute;
+    z-index:3;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    background:#050505;
+    border:2px solid var(--gold);
+    box-shadow:0 0 15px var(--gold);
+    animation:pulse 1.2s infinite;
+}
+
+.oil:after{
+    content:"";
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:var(--gold);
+    border-radius:50%;
+    left:3px;
+    top:3px;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.35);
+        box-shadow:0 0 28px var(--gold);
+    }
+}
+
+.pipe{
+    position:absolute;
+    height:3px;
+    background:#d39f3d;
+    transform-origin:left;
+    opacity:.8;
+    box-shadow:0 0 7px #d39f3d;
+    z-index:2;
+}
+
+.port{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:#82b8c1;
+    border:2px solid white;
+    transform:rotate(45deg);
+    z-index:4;
+}
+
+.tanker{
+    position:absolute;
+    z-index:10;
+    font-size:27px;
+    transition:all .8s cubic-bezier(.2,.8,.2,1);
+    filter:drop-shadow(0 0 8px white);
+}
+
+.event{
+    position:absolute;
+    z-index:15;
+    left:14px;
+    right:14px;
+    bottom:14px;
+    padding:13px 15px;
+    border-radius:13px;
+    background:#111b17ed;
+    border:1px solid #806936;
+    animation:eventIn .4s;
+}
+
+.event b{color:var(--gold)}
+.event span{
+    display:block;
+    margin-top:4px;
+    color:#bfd0c9;
+    font-size:12px;
+}
+
+@keyframes eventIn{
+    from{opacity:0;transform:translateY(12px)}
+    to{opacity:1;transform:none}
+}
+
+
+/* SIDE */
+
+.side{
+    min-height:630px;
+    padding:18px;
+    display:flex;
+    flex-direction:column;
+}
+
+.tag{
+    color:var(--gold);
+    letter-spacing:2px;
+    font-size:10px;
+}
+
+.side h2{
+    font-size:25px;
+    margin:8px 0;
+}
+
+.desc{
+    color:#abc1b8;
+    line-height:1.55;
+    font-size:14px;
+}
+
+.choices{
+    display:grid;
+    gap:8px;
+    margin-top:auto;
+}
+
+.choice{
+    width:100%;
+    text-align:left;
+    padding:13px;
+    border-radius:11px;
+    border:1px solid #35594b;
+    background:#10241f;
+    color:#e8f2ee;
+}
+
+.choice:hover{
+    border-color:var(--gold);
+    background:#17382c;
+}
+
+.choice b{
+    display:block;
+    color:var(--gold);
+    margin-bottom:3px;
+}
+
+.choice small{
+    color:#8fa99f;
+}
+
+
+/* MINI GAMES */
+
+.mini{
+    margin-top:auto;
+}
+
+.mini h3{
+    color:var(--gold);
+    margin-bottom:8px;
+}
+
+.budget{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.budget label{
+    padding:9px;
+    border-radius:10px;
+    background:#10231f;
+    color:#bfd1c9;
+    font-size:12px;
+}
+
+.budget input{
+    width:100%;
+    accent-color:var(--gold);
+}
+
+.num{
+    float:right;
+    color:var(--gold);
+    font-weight:bold;
+}
+
+.alloc{
+    color:#9db7ac;
+    font-size:12px;
+    margin:9px 0;
+}
+
+.route{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:5px;
+    margin:12px 0;
+}
+
+.check{
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    background:#10231f;
+    border:1px solid #34564a;
+    font-size:12px;
+}
+
+.check.done{
+    background:#24483a;
+    border-color:var(--gold);
+    color:var(--gold);
+}
+
+.routebuttons{
+    display:grid;
+    gap:7px;
+}
+
+.routebuttons button,
+.envbuttons button{
+    text-align:left;
+    padding:11px;
+    border-radius:9px;
+    border:1px solid #34564a;
+    background:#10231f;
+    color:#e8f2ee;
+}
+
+.routebuttons button:hover,
+.envbuttons button:hover{
+    border-color:var(--gold);
+}
+
+.routebuttons b,
+.envbuttons b{
+    color:var(--gold);
+}
+
+.envbuttons{
+    display:grid;
+    gap:8px;
+}
+
+
+/* END */
+
+.finish{
+    text-align:center;
+    padding:45px 22px;
+}
+
+.trophy{
+    font-size:70px;
+}
+
+.finish .eyebrow{
+    margin-top:10px;
+}
+
+.finish h1{
+    color:var(--gold);
+    font-size:clamp(30px,6vw,58px);
+}
+
+.finish p{
+    max-width:720px;
+    margin:auto;
+    color:#adc4ba;
+    line-height:1.6;
+}
+
+.finalstats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+    margin:25px 0;
+}
+
+.finalstats div{
+    background:#10231f;
+    border-radius:11px;
+    padding:13px;
+}
+
+.finalstats b{
+    display:block;
+    color:var(--gold);
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:100;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--gold);
+    color:#17140b;
+    padding:11px 18px;
+    border-radius:99px;
+    font-weight:bold;
+    white-space:nowrap;
+    animation:toast 2.3s forwards;
+}
+
+@keyframes toast{
+    0%{opacity:0;top:60px}
+    15%,80%{opacity:1;top:80px}
+    100%{opacity:0;top:80px}
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+    .layout{
+        grid-template-columns:1fr;
+    }
+
+    .map{
+        height:470px;
+    }
+
+    .side{
+        min-height:0;
+    }
+
+    .stats{
+        overflow-x:auto;
+    }
+
+    .stat{
+        min-width:82px;
+    }
+
+    .finalstats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:500px){
+    .map{
+        height:430px;
+    }
+
+    .country{
+        font-size:9px;
+        padding:5px 6px;
+    }
+
+    .event{
+        left:8px;
+        right:8px;
+        bottom:8px;
+    }
+
+    .side{
+        padding:14px;
+    }
+
+    .logo{
+        font-size:43px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- START SCREEN -->
+<section id="start">
+<div class="panel hero">
+
+<div class="oil-orb"></div>
+
+<div class="eyebrow">WEST ASIA • 1908 — 2000</div>
+
+<div class="logo">OIL EMPIRE</div>
+
+<p>
+Guide an oil-producing state through the major turning points of West Asian history.
+Make decisions, manage wealth, protect trade and face the environmental cost of oil.
+</p>
+
+<div class="features">
+<div class="feature">🗺️ Explore</div>
+<div class="feature">🛢️ Produce Oil</div>
+<div class="feature">💰 Build Wealth</div>
+<div class="feature">🚢 Protect Trade</div>
+<div class="feature">🌱 Manage Environment</div>
+</div>
+
+<button class="primary" onclick="startGame()">
+▶ START CAMPAIGN
+</button>
+
+<div class="note">
+Educational historical simulation • 1908–2000
+</div>
+
+</div>
+</section>
+
+
+<!-- GAME -->
+<section id="game" class="hidden">
+
+<header class="topbar">
+
+<div class="toprow">
+<div class="brand">OIL EMPIRE</div>
+<div class="year" id="year">1908</div>
+<button class="reset" onclick="location.reload()">↻</button>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+💰
+<b id="wealth">50</b>
+<small>Wealth</small>
+<div class="bar"><i id="wealthbar"></i></div>
+</div>
+
+<div class="stat">
+🛢️
+<b id="oil">50</b>
+<small>Oil</small>
+<div class="bar"><i id="oilbar"></i></div>
+</div>
+
+<div class="stat">
+🌍
+<b id="influence">30</b>
+<small>Influence</small>
+<div class="bar"><i id="influencebar"></i></div>
+</div>
+
+<div class="stat">
+🛡️
+<b id="security">45</b>
+<small>Security</small>
+<div class="bar"><i id="securitybar"></i></div>
+</div>
+
+<div class="stat">
+🌱
+<b id="environment">15</b>
+<small>Env. pressure</small>
+<div class="bar"><i id="environmentbar"></i></div>
+</div>
+
+</div>
+</header>
+
+
+<main class="layout">
+
+<!-- MAP -->
+<div class="box">
+
+<div class="maphead">
+<b id="counter">MISSION 1 / 9</b>
+<span id="hint">Historical map</span>
+</div>
+
+<div class="map" id="map">
+
+<div class="sea" style="left:12%;top:13%">Mediterranean Sea</div>
+<div class="sea" style="left:72%;top:65%">Persian Gulf</div>
+<div class="sea" style="left:76%;top:87%">Arabian Sea</div>
+<div class="sea" style="left:87%;top:55%">Gulf of Oman</div>
+
+<div class="country" id="iran" style="left:57%;top:34%">IRAN</div>
+<div class="country" id="iraq" style="left:47%;top:38%">IRAQ</div>
+<div class="country" id="kuwait" style="left:55%;top:48%">KUWAIT</div>
+<div class="country" id="saudi" style="left:42%;top:54%">SAUDI ARABIA</div>
+<div class="country" id="uae" style="left:62%;top:65%">UAE</div>
+<div class="country" id="oman" style="left:70%;top:70%">OMAN</div>
+<div class="country" id="syria" style="left:40%;top:28%">SYRIA</div>
+<div class="country" id="israel" style="left:31%;top:36%">ISRAEL</div>
+<div class="country" id="egypt" style="left:23%;top:43%">EGYPT</div>
+
+<div class="oil" style="left:58%;top:39%"></div>
+<div class="oil" style="left:47%;top:51%"></div>
+<div class="oil" style="left:55%;top:55%"></div>
+<div class="oil" style="left:47%;top:60%"></div>
+<div class="oil" style="left:64%;top:69%"></div>
+
+<div class="pipe" style="left:52%;top:54%;width:150px;transform:rotate(12deg)"></div>
+<div class="pipe" style="left:49%;top:59%;width:125px;transform:rotate(28deg)"></div>
+
+<div class="port" style="left:66%;top:78%"></div>
+<div class="port" style="left:53%;top:60%"></div>
+
+<div class="tanker" id="tanker" style="left:68%;top:78%">🚢</div>
+
+<div class="event" id="event">
+<b>1908 — A new era begins</b>
+<span>Commercial oil production begins in Persia. A resource that will reshape the region has been found.</span>
+</div>
+
+</div>
+</div>
+
+
+<!-- MISSION PANEL -->
+<aside class="box side">
+
+<div class="tag" id="tag">HISTORICAL MISSION</div>
+
+<h2 id="missionTitle">THE FIRST BLACK GOLD</h2>
+
+<p class="desc" id="missionText"></p>
+
+<div id="missionArea" class="choices"></div>
+
+</aside>
+
+</main>
+</section>
+
+
+<!-- END SCREEN -->
+<section id="ending" class="hidden">
+
+<div class="panel finish">
+
+<div class="trophy">🏆</div>
+
+<div class="eyebrow">THE YEAR 2000</div>
+
+<h1 id="finalTitle"></h1>
+
+<p id="finalText"></p>
+
+<div class="finalstats">
+
+<div>💰<b id="fwealth">0</b>Wealth</div>
+<div>🛢️<b id="foil">0</b>Oil</div>
+<div>🌍<b id="finfluence">0</b>Influence</div>
+<div>🛡️<b id="fsecurity">0</b>Security</div>
+<div>🌱<b id="fenv">0</b>Pressure</div>
+
+</div>
+
+<button class="primary" onclick="location.reload()">
+↻ PLAY AGAIN
+</button>
+
+</div>
+</section>
+
+</div>
+
+
+<script>
+
+const state={
+    wealth:50,
+    oil:50,
+    influence:30,
+    security:45,
+    environment:15
+};
+
+let mission=0;
+let routeStep=0;
+
+
+/* MISSIONS */
+
+const missions=[
+
+{
+year:"1908",
+title:"THE FIRST BLACK GOLD",
+tag:"BEGINNING OF THE OIL ECONOMY",
+text:"Oil is discovered and commercial production begins in Persia. Foreign companies quickly become important actors.",
+choices:[
+["⛽ Expand production","Increase oil output and early revenue.",
+{oil:18,wealth:10,environment:6}],
+["🤝 Negotiate a larger local share","Seek more local control while developing production.",
+{influence:8,wealth:5,environment:3}],
+["🐢 Develop slowly","Protect resources and limit rapid expansion.",
+{security:4,environment:-2,oil:5}]
+]
+},
+
+{
+year:"1951",
+title:"IRAN TAKES CONTROL",
+tag:"NATIONALISATION",
+text:"Mohammad Mosaddegh's government nationalises Iran's oil industry. The struggle highlights sovereignty and foreign economic influence.",
+choices:[
+["🇮🇷 Nationalise","Prioritise control over the national resource.",
+{influence:15,wealth:-8,security:4}],
+["🤝 Compromise","Share control to reduce confrontation.",
+{wealth:6,influence:5,security:5}],
+["🏢 Keep foreign management","Prioritise short-term production and investment.",
+{oil:10,wealth:10,influence:-8,environment:4}]
+]
+},
+
+{
+year:"1960",
+title:"BUILD A PRODUCER ALLIANCE",
+tag:"OPEC • 1960",
+text:"Iran, Iraq, Kuwait, Saudi Arabia and Venezuela establish OPEC to strengthen oil-producing countries' bargaining power.",
+choices:[
+["🛢️ Join OPEC","Coordinate with other producers.",
+{influence:15,wealth:8}],
+["📈 Maximise output","Focus on selling as much oil as possible.",
+{oil:15,wealth:12,environment:8}],
+["⚖️ Balance output","Protect revenue while avoiding excessive dependence.",
+{wealth:5,security:4,environment:2}]
+]
+},
+
+{
+year:"1973",
+title:"THE OIL CRISIS",
+tag:"GEOPOLITICS",
+text:"During the Arab–Israeli War, Arab oil producers impose an embargo on selected supporters of Israel. Oil prices rise sharply and oil's political importance becomes clear.",
+choices:[
+["📢 Use oil as leverage","Use supply power to increase political influence.",
+{influence:18,wealth:15,security:-4}],
+["💼 Protect market stability","Keep exports flowing and strengthen long-term revenue.",
+{wealth:10,security:6}],
+["🏭 Invest windfall revenue","Use higher income for development and diversification.",
+{wealth:7,environment:-3,security:5}]
+]
+},
+
+{
+year:"1970s–80s",
+title:"BUILD THE MODERN STATE",
+tag:"OIL WEALTH & SOCIETY",
+text:"Oil revenues finance infrastructure, public services and modern cities. Allocate 100 development points.",
+mini:"budget"
+},
+
+{
+year:"1980–1988",
+title:"THE TANKER ROUTE",
+tag:"OIL, CONFLICT & SECURITY",
+text:"The Iran–Iraq War spills into the Gulf. Shipping and oil infrastructure face serious risks. Guide your tanker through five checkpoints.",
+mini:"tanker"
+},
+
+{
+year:"1990–1991",
+title:"THE GULF WAR",
+tag:"1990–91 GULF WAR",
+text:"Iraq's invasion of Kuwait triggers an international war. Oil supply, shipping routes and the security of Gulf resources become major concerns.",
+choices:[
+["🛡️ Strengthen protection","Prioritise protection of oil infrastructure and shipping.",
+{security:16,wealth:-4}],
+["💰 Protect revenue","Prioritise economic continuity during the crisis.",
+{wealth:12,security:4}],
+["🌍 Build diplomacy","Use regional and international diplomacy to reduce risks.",
+{influence:12,security:8}]
+]
+},
+
+{
+year:"1990s",
+title:"THE ENVIRONMENTAL QUESTION",
+tag:"ENVIRONMENTAL PRESSURE",
+text:"By the 1990s, the environmental costs of fossil fuels and greenhouse-gas emissions are increasingly recognised. Choose how to respond.",
+mini:"environment"
+},
+
+{
+year:"2000",
+title:"THE FINAL CROSSROADS",
+tag:"THE END OF THE CENTURY",
+text:"West Asia enters the new century with enormous oil wealth and influence, but also economic dependence, security vulnerabilities and environmental pressures.",
+choices:[
+["🧭 Diversify the economy","Reduce dependence on oil revenue.",
+{wealth:5,environment:-8,security:4,influence:4}],
+["🛢️ Expand oil economy","Double down on petroleum as the main source of wealth.",
+{oil:15,wealth:15,environment:12}],
+["⚖️ Balance energy & development","Continue oil production while improving efficiency and environmental management.",
+{wealth:8,security:5,environment:-5}]
+]
+}
+
+];
+
+
+/* START */
+
+function startGame(){
+
+    document.getElementById("start").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+
+    renderMission();
+    updateStats();
+}
+
+
+/* STATS */
+
+function clamp(v){
+    return Math.max(0,Math.min(100,v));
+}
+
+function apply(change){
+
+    for(const key in change){
+        state[key]=clamp(state[key]+change[key]);
+    }
+
+    updateStats();
+}
+
+function updateStats(){
+
+    for(const key of Object.keys(state)){
+
+        document.getElementById(key).textContent=
+            Math.round(state[key]);
+
+        document.getElementById(key+"bar").style.width=
+            state[key]+"%";
+    }
+}
+
+
+/* TOAST */
+
+function toast(message){
+
+    const t=document.createElement("div");
+
+    t.className="toast";
+    t.textContent=message;
+
+    document.body.appendChild(t);
+
+    setTimeout(()=>t.remove(),2300);
+}
+
+
+/* EVENT */
+
+function setEvent(title,text){
+
+    document.getElementById("event").innerHTML=
+        "<b>"+title+"</b><span>"+text+"</span>";
+}
+
+
+/* MAP HIGHLIGHT */
+
+function highlight(country){
+
+    document.querySelectorAll(".country")
+        .forEach(x=>x.classList.remove("hot"));
+
+    if(country){
+        const el=document.getElementById(country);
+        if(el)el.classList.add("hot");
+    }
+}
+
+
+/* RENDER */
+
+function renderMission(){
+
+    const m=missions[mission];
+
+    document.getElementById("year").textContent=m.year;
+    document.getElementById("counter").textContent=
+        "MISSION "+(mission+1)+" / "+missions.length;
+
+    document.getElementById("tag").textContent=m.tag;
+    document.getElementById("missionTitle").textContent=m.title;
+    document.getElementById("missionText").textContent=m.text;
+
+    const area=document.getElementById("missionArea");
+    area.innerHTML="";
+
+    highlight(null);
+
+    if(m.mini==="budget"){
+        renderBudget();
+        return;
+    }
+
+    if(m.mini==="tanker"){
+        renderTanker();
+        return;
+    }
+
+    if(m.mini==="environment"){
+        renderEnvironment();
+        return;
+    }
+
+    m.choices.forEach((choice,index)=>{
+
+        const button=document.createElement("button");
+
+        button.className="choice";
+
+        button.innerHTML=
+            "<b>"+choice[0]+"</b>"+
+            "<small>"+choice[1]+"</small>";
+
+        button.onclick=()=>choose(index);
+
+        area.appendChild(button);
+    });
+
+    if(m.year==="1908")highlight("iran");
+    if(m.year==="1951")highlight("iran");
+    if(m.year==="1960"){
+        highlight("iraq");
+        document.getElementById("iraq").classList.add("clickable");
+    }
+    if(m.year==="1973"){
+        highlight("saudi");
+        document.getElementById("saudi").classList.add("clickable");
+    }
+    if(m.year==="1990–1991"){
+        highlight("kuwait");
+    }
+}
+
+
+/* NORMAL CHOICE */
+
+function choose(index){
+
+    const m=missions[mission];
+    const choice=m.choices[index];
+
+    apply(choice[2]);
+
+    toast(choice[0]);
+
+    if(m.year==="1908"){
+        setEvent(
+            "1908 — Oil production begins",
+            "Commercial production at Masjed Soleyman begins a new oil era."
+        );
+    }
+
+    if(m.year==="1951"){
+        setEvent(
+            "1951 — Iranian nationalisation",
+            "The struggle for control over petroleum becomes a major political issue."
+        );
+    }
+
+    if(m.year==="1960"){
+        setEvent(
+            "1960 — OPEC",
+            "Oil-producing countries create a new collective organisation."
+        );
+    }
+
+    if(m.year==="1973"){
+        setEvent(
+            "1973 — Oil crisis",
+            "The crisis demonstrates the strategic importance of petroleum."
+        );
+    }
+
+    if(m.year==="1990–1991"){
+        setEvent(
+            "1990–91 — Gulf War",
+            "Kuwait's invasion and the war place Gulf oil security at the centre of world politics."
+        );
+    }
+
+    setTimeout(nextMission,700);
+}
+
+
+/* NEXT */
+
+function nextMission(){
+
+    mission++;
+
+    if(mission>=missions.length){
+        finishGame();
+    }else{
+        renderMission();
+    }
+}
+
+
+/* BUDGET GAME */
+
+function renderBudget(){
+
+    const area=document.getElementById("missionArea");
+
+    area.innerHTML=`
+
+    <div class="mini">
+
+    <h3>🏗️ Allocate 100 Development Points</h3>
+
+    <div class="budget">
+
+    <label>
+    Roads & Infrastructure
+    <span class="num" id="b1">25</span>
+    <input id="in1" type="range" min="0" max="100" value="25"
+    oninput="budgetUpdate()">
+    </label>
+
+    <label>
+    Security
+    <span class="num" id="b2">25</span>
+    <input id="in2" type="range" min="0" max="100" value="25"
+    oninput="budgetUpdate()">
+    </label>
+
+    <label>
+    Education
+    <span class="num" id="b3">25</span>
+    <input id="in3" type="range" min="0" max="100" value="25"
+    oninput="budgetUpdate()">
+    </label>
+
+    <label>
+    Diversification
+    <span class="num" id="b4">25</span>
+    <input id="in4" type="range" min="0" max="100" value="25"
+    oninput="budgetUpdate()">
+    </label>
+
+    </div>
+
+    <div class="alloc">
+    Allocated: <b id="total">100</b> / 100
+    </div>
+
+    <button class="primary" style="width:100%"
+    onclick="finishBudget()">
+    CONFIRM BUDGET
+    </button>
+
+    </div>
+    `;
+
+    budgetUpdate();
+}
+
+function budgetUpdate(){
+
+    const values=[
+        +document.getElementById("in1").value,
+        +document.getElementById("in2").value,
+        +document.getElementById("in3").value,
+        +document.getElementById("in4").value
+    ];
+
+    values.forEach((v,i)=>{
+        document.getElementById("b"+(i+1)).textContent=v;
+    });
+
+    document.getElementById("total").textContent=
+        values.reduce((a,b)=>a+b,0);
+}
+
+function finishBudget(){
+
+    const values=[
+        +in1.value,+in2.value,+in3.value,+in4.value
+    ];
+
+    const total=values.reduce((a,b)=>a+b,0);
+
+    if(total!==100){
+        toast("You must allocate exactly 100 points");
+        return;
+    }
+
+    apply({
+        wealth:Math.round(values[0]/8),
+        security:Math.round(values[1]/8),
+        influence:Math.round(values[2]/8),
+        environment:-Math.round(values[3]/12)
+    });
+
+    setEvent(
+        "1970s–80s — Oil wealth transforms society",
+        "Oil revenue supports infrastructure, public services and modernisation."
+    );
+
+    toast("Development budget confirmed!");
+
+    setTimeout(nextMission,900);
+}
+
+
+/* TANKER GAME */
+
+function renderTanker(){
+
+    routeStep=0;
+
+    const area=document.getElementById("missionArea");
+
+    area.innerHTML=`
+
+    <div class="mini">
+
+    <h3>🚢 Guide the tanker</h3>
+
+    <div class="route">
+        <div class="check" id="c0">1</div>
+        <div class="check" id="c1">2</div>
+        <div class="check" id="c2">3</div>
+        <div class="check" id="c3">4</div>
+        <div class="check" id="c4">5</div>
+    </div>
+
+    <div class="routebuttons">
+
+    <button onclick="moveTanker(2)">
+    <b>🛡️ Protected Route</b><br>
+    Safer, but slower.
+    </button>
+
+    <button onclick="moveTanker(1)">
+    <b>⚡ Fast Route</b><br>
+    Faster, but more exposed.
+    </button>
+
+    <button onclick="moveTanker(-1)">
+    <b>↗️ Shortcut</b><br>
+    Risky route through danger.
+    </button>
+
+    </div>
+
+    </div>
+    `;
+
+    document.getElementById("tanker").style.left="68%";
+    document.getElementById("tanker").style.top="78%";
+
+    highlight("oman");
+}
+
+function moveTanker(type){
+
+    if(routeStep>=5)return;
+
+    routeStep++;
+
+    document.getElementById("c"+(routeStep-1))
+        .classList.add("done");
+
+    const positions=[
+        ["65%","70%"],
+        ["59%","65%"],
+        ["53%","61%"],
+        ["47%","56%"],
+        ["40%","51%"]
+    ];
+
+    const p=positions[routeStep-1];
+
+    document.getElementById("tanker").style.left=p[0];
+    document.getElementById("tanker").style.top=p[1];
+
+    if(type===2){
+        apply({security:3,wealth:-1});
+        toast("Protected checkpoint reached");
+    }
+
+    if(type===1){
+        apply({wealth:2,security:-1});
+        toast("Fast route!");
+    }
+
+    if(type===-1){
+        apply({security:-4,wealth:3,environment:1});
+        toast("Dangerous shortcut!");
+    }
+
+    if(routeStep===5){
+
+        setEvent(
+            "1980s — Tanker War",
+            "Oil shipping routes become security concerns during the Iran–Iraq War."
+        );
+
+        setTimeout(nextMission,1200);
+    }
+}
+
+
+/* ENVIRONMENT GAME */
+
+function renderEnvironment(){
+
+    const area=document.getElementById("missionArea");
+
+    area.innerHTML=`
+
+    <div class="mini">
+
+    <h3>🌱 Environmental Challenge</h3>
+
+    <div class="envbuttons">
+
+    <button onclick="environmentChoice(1)">
+    <b>🌿 Cleaner Technology</b><br>
+    Reduce environmental pressure.
+    </button>
+
+    <button onclick="environmentChoice(2)">
+    <b>⚙️ Improve Efficiency</b><br>
+    Keep production while reducing waste.
+    </button>
+
+    <button onclick="environmentChoice(3)">
+    <b>🛢️ Expand Oil Production</b><br>
+    Increase output but add environmental pressure.
+    </button>
+
+    </div>
+
+    </div>
+    `;
+}
+
+function environmentChoice(choice){
+
+    if(choice===1){
+        apply({
+            environment:-14,
+            wealth:-3,
+            influence:5
+        });
+
+        toast("Cleaner technology adopted!");
+    }
+
+    if(choice===2){
+        apply({
+            environment:-8,
+            wealth:4,
+            oil:3
+        });
+
+        toast("Efficiency improved!");
+    }
+
+    if(choice===3){
+        apply({
+            environment:15,
+            wealth:10,
+            oil:12
+        });
+
+        toast("Oil production expanded!");
+    }
+
+    setEvent(
+        "1990s — Environmental awareness",
+        "Climate and environmental concerns increasingly challenge the fossil-fuel economy."
+    );
+
+    setTimeout(nextMission,900);
+}
+
+
+/* END */
+
+function finishGame(){
+
+    document.getElementById("game").classList.add("hidden");
+    document.getElementById("ending").classList.remove("hidden");
+
+    document.getElementById("fwealth").textContent=Math.round(state.wealth);
+    document.getElementById("foil").textContent=Math.round(state.oil);
+    document.getElementById("finfluence").textContent=Math.round(state.influence);
+    document.getElementById("fsecurity").textContent=Math.round(state.security);
+    document.getElementById("fenv").textContent=Math.round(state.environment);
+
+    let title;
+    let text;
+
+    if(state.environment<30){
+
+        title="A SHIFT TOWARD SUSTAINABILITY";
+
+        text=
+        "Your decisions produced significant wealth and influence while keeping environmental pressure relatively low. The simulation shows how diversification, efficiency and environmental choices can change the long-term direction of an oil economy.";
+
+    }else if(state.environment<60){
+
+        title="A BALANCED OIL ECONOMY";
+
+        text=
+        "Your state entered 2000 with a mixture of oil wealth, development and environmental pressure. The choices show the difficult balance between economic growth, security and environmental concerns.";
+
+    }else{
+
+        title="AN OIL-DEPENDENT FUTURE";
+
+        text=
+        "Your state entered 2000 with strong petroleum wealth, but environmental pressure and dependence remained significant. The simulation demonstrates the long-term trade-offs created by an oil-based economy.";
+    }
+
+    document.getElementById("finalTitle").textContent=title;
+    document.getElementById("finalText").textContent=text;
+}
+
+</script>
+
+</body>
+</html>
